@@ -1,82 +1,198 @@
 
-# CRUD con Web Services - Producto y Categoría
+# Spring Boot + React Project 🚀
 
-## Objetivo del Lab
+Este es un proyecto que utiliza **Spring Boot** en el backend ⚙️ y **React** en el frontend 🌐. El objetivo del proyecto es crear una aplicación web con funcionalidades CRUD para **Productos** 🛒 y **Categorías** 📂. A través de un servicio web RESTful, se gestionan las operaciones en el backend y el frontend se encarga de la interacción con el usuario 👨‍💻.
 
-Este laboratorio tiene como objetivo la implementación de un CRUD (Crear, Leer, Actualizar y Eliminar) utilizando Web Services para las tablas **Producto** y **Categoría**. La aplicación está dividida en dos partes principales: **Backend** (Java con Spring Boot) y **Frontend** (React).
+## Tecnologías Utilizadas 🛠️
 
-### Estructura del Proyecto
+- **Spring Boot** para el backend ⚙️
+- **React** para el frontend 🌐
+- **JPA / Hibernate** para interactuar con la base de datos 💾
+- **Axios** para las solicitudes HTTP 🌐
+- **MySQL** (o cualquier base de datos relacional) para la persistencia de datos 🗃️
 
-- **Backend**: Se utiliza Spring Boot con Spring Data JPA para crear y gestionar las entidades **Producto** y **Categoría**, permitiendo realizar operaciones CRUD.
-- **Frontend**: Se utiliza React para mostrar y gestionar los productos y categorías de forma interactiva.
+## Estructura del Proyecto 🏗️
+
+### Frontend 🎨
+
+La carpeta `front` contiene el código de React:
+
+front/
+│ App.jsx # Componente principal de la aplicación 📲
+│ main.jsx # Archivo de entrada principal para React 💻
+│
+├───assets
+│ react.svg # Imagen de React para la interfaz 🌟
+│
+├───components
+│ ListaCategorias.jsx # Componente para listar las categorías 🗂️
+│ ListaProductos.jsx # Componente para listar los productos 🛍️
+│ RegistrarCategoria.jsx # Componente para registrar una nueva categoría 📝
+│ RegistrarProducto.jsx # Componente para registrar un nuevo producto 🏷️
+│
+├───pages
+│ Home.jsx # Componente para la página principal con botones de navegación 🏠
+│
+└───services
+categoriaService.js # Servicio para interactuar con el backend para categorías 🔄
+productoService.js # Servicio para interactuar con el backend para productos 🔄
+
+### Backend ⚙️
+
+La carpeta `back` contiene el código de Spring Boot:
+
+back/
+└───src
+├───main
+│ ├───java
+│ │ └───com
+│ │ └───tecsup
+│ │ └───tarea_spring
+│ │ │ TareaSpringApplication.java # Clase principal de Spring Boot 🔧
+│ │ │
+│ │ ├───controlador
+│ │ │ CategoriaControlador.java # Controlador para las categorías 🛠️
+│ │ │ ProductoControlador.java # Controlador para los productos 🛒
+│ │ │
+│ │ ├───excepciones
+│ │ │ ResourceNotFoundException.java # Excepción personalizada para recursos no encontrados ⚠️
+│ │ │
+│ │ ├───modelo
+│ │ │ Categoria.java # Modelo para las categorías 📂
+│ │ │ Producto.java # Modelo para los productos 🛍️
+│ │ │
+│ │ └───repositorio
+│ │ CategoriaRepositorio.java # Repositorio de categorías 🗃️
+│ │ ProductoRepositorio.java # Repositorio de productos 🗃️
+│ │
+│ └───resources
+│ │ application.properties # Archivo de configuración de la base de datos 🔑
+
+## Instalación 🔧
+
+### Backend (Spring Boot) ⚙️
+
+1. Clona este repositorio:
+
+    ```bash
+    git clone https://github.com/Vania-0731/springboot-react.git
+    ```
+
+2. Navega al directorio `back` (o donde tengas el código del servidor) y abre un terminal en ese directorio.
+
+3. **Instala las dependencias**:
+
+    Si estás usando **Maven**:
+
+    ```bash
+    mvn install
+    ```
+
+    Si usas **Gradle**, ejecuta:
+
+    ```bash
+    ./gradlew build
+    ```
+
+4. **Configura la base de datos**:
+
+    Asegúrate de tener una base de datos configurada y ajusta las configuraciones en el archivo `application.properties` según sea necesario. 
+
+    Ejemplo de configuración para MySQL:
+
+    ```properties
+    spring.datasource.url=jdbc:mysql://localhost:3306/mi_base_de_datos
+    spring.datasource.username=usuario
+    spring.datasource.password=contraseña
+    ```
+
+5. **Inicia el backend**:
+
+    Si estás utilizando Maven:
+
+    ```bash
+    mvn spring-boot:run
+    ```
+
+    O con Gradle:
+
+    ```bash
+    ./gradlew bootRun
+    ```
+
+### Frontend (React) 🌐
+
+1. Navega al directorio `front` (o donde tengas el código del cliente) y abre un terminal en ese directorio.
+
+2. **Instala las dependencias de Node**:
+
+    ```bash
+    npm install
+    ```
+
+    o si usas **Yarn**:
+
+    ```bash
+    yarn install
+    ```
+
+3. **Inicia el frontend**:
+
+    ```bash
+    npm start
+    ```
+
+    o si usas **Yarn**:
+
+    ```bash
+    yarn start
+    ```
+
+Esto debería iniciar tu servidor de desarrollo React en `http://localhost:3000` (por defecto).
+
+## Funcionalidades ⚙️
+
+### Backend 🔧
+
+- **Productos**: CRUD (Crear, Leer, Actualizar, Eliminar) para productos 🛒.
+- **Categorías**: CRUD (Crear, Leer, Actualizar, Eliminar) para categorías 📂.
+
+### Frontend 🖥️
+
+- **Listar Productos**: Muestra todos los productos registrados 🛍️.
+- **Registrar Producto**: Permite agregar un nuevo producto 📝.
+- **Actualizar Producto**: Permite editar un producto existente ✏️.
+- **Eliminar Producto**: Elimina un producto ❌.
+- **Listar Categorías**: Muestra todas las categorías 📂.
+- **Registrar Categoría**: Permite agregar una nueva categoría 📝.
+- **Actualizar Categoría**: Permite editar una categoría existente ✏️.
+- **Eliminar Categoría**: Elimina una categoría ❌.
+
+## Endpoints del Backend 🔌
+
+- **GET** `/api/v1/productos` - Obtener todos los productos 🛒.
+- **POST** `/api/v1/productos` - Crear un nuevo producto 📝.
+- **GET** `/api/v1/productos/{id}` - Obtener un producto por ID 🔍.
+- **PUT** `/api/v1/productos/{id}` - Actualizar un producto existente ✏️.
+- **DELETE** `/api/v1/productos/{id}` - Eliminar un producto ❌.
+
+- **GET** `/api/v1/categorias` - Obtener todas las categorías 📂.
+- **POST** `/api/v1/categorias` - Crear una nueva categoría 📝.
+- **GET** `/api/v1/categorias/{id}` - Obtener una categoría por ID 🔍.
+- **PUT** `/api/v1/categorias/{id}` - Actualizar una categoría existente ✏️.
+- **DELETE** `/api/v1/categorias/{id}` - Eliminar una categoría ❌.
+
+## Contribuciones 🤝
+
+Si deseas contribuir a este proyecto, por favor sigue estos pasos:
+
+1. Haz un **fork** de este repositorio 🍴.
+2. Crea una nueva **branch** para tu funcionalidad (`git checkout -b nueva-funcionalidad`) 🌱.
+3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`) 📝.
+4. Haz un **push** a la branch (`git push origin nueva-funcionalidad`) 🚀.
+5. Abre un **pull request** 📬.
 
 ---
 
-## Backend
+¡Espero que este proyecto te sea útil! Si tienes alguna pregunta o sugerencia, no dudes en contactarme 📧.
 
-### Entidades
-
-#### Producto
-La entidad **Producto** tiene los siguientes atributos:
-
-- `id`: Identificador único del producto.
-- `nombre`: Nombre del producto.
-- `precio`: Precio del producto.
-- `stock`: Cantidad disponible del producto.
-
-#### Categoría
-La entidad **Categoría** tiene los siguientes atributos:
-
-- `id`: Identificador único de la categoría.
-- `nombre`: Nombre de la categoría.
-
-### Controladores
-
-- **ProductoController**: Gestiona las peticiones relacionadas con productos, permitiendo listar, registrar, actualizar y eliminar productos.
-- **CategoriaController**: Gestiona las peticiones relacionadas con categorías, permitiendo listar, registrar, actualizar y eliminar categorías.
-
-### Excepciones
-Se manejan excepciones personalizadas para situaciones como la búsqueda de un producto o categoría no existente, proporcionando respuestas claras y adecuadas.
-
-### Repositorios
-
-- **ProductoRepository**: Usando Spring Data JPA, permite realizar operaciones sobre la tabla de productos.
-- **CategoriaRepository**: Similar al repositorio de productos, facilita la interacción con la tabla de categorías.
-
----
-
-## Frontend
-
-### ListarProducto
-La vista **ListarProducto** muestra una lista de todos los productos registrados, incluyendo información como nombre, precio y stock.
-
-### ListarCategoria
-La vista **ListarCategoria** muestra una lista de todas las categorías disponibles en el sistema.
-
-### Funcionalidad
-
-- **Registrar Producto**: Permite registrar nuevos productos mediante un formulario interactivo que envía los datos al backend.
-- **Registrar Categoría**: Similar al formulario de productos, permite registrar nuevas categorías.
-
-### Verificación de Funcionalidades
-Se realizan pruebas para verificar que las operaciones CRUD funcionan correctamente tanto en el frontend como en el backend, asegurando que las operaciones de **listar**, **registrar**, **actualizar** y **eliminar** productos y categorías se reflejan adecuadamente en la base de datos.
-
----
-
-## Conclusiones
-
-1. **Implementación exitosa del CRUD en el backend**: Al utilizar Spring Boot y JPA, pude implementar el CRUD de manera eficiente y sin necesidad de escribir SQL manual, lo que agiliza la creación de aplicaciones backend.
-
-2. **Manejo adecuado de excepciones**: Implementé excepciones personalizadas para manejar errores de manera efectiva, proporcionando respuestas claras y mejorando la experiencia del usuario.
-
-3. **Integración fluida entre frontend y backend**: Usando React para el frontend y Spring Boot para el backend, pude integrar ambas partes de la aplicación sin problemas, lo que demuestra la efectividad de usar estas tecnologías en conjunto.
-
-4. **Verificación constante de funcionalidades**: Realicé pruebas para asegurarme de que todas las funcionalidades del CRUD (listar, registrar, actualizar, eliminar) estuvieran funcionando correctamente, lo que garantizó una integración exitosa.
-
-5. **Mejora en la estructura del proyecto**: Aprendí a estructurar mejor mi proyecto separando la lógica de negocio, el acceso a datos y la presentación, lo que facilita la escalabilidad y el mantenimiento del sistema.
-
----
-
-## Ver más archivos en GitHub
-
-Puedes acceder al código completo del proyecto en [GitHub](#).
