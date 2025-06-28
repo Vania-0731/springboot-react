@@ -1,198 +1,316 @@
+# Spring Boot + React CRUD Application 🚀
 
-# Spring Boot + React Project 🚀
+Una aplicación web full-stack que combina **Spring Boot** en el backend y **React** en el frontend para gestionar productos y categorías mediante operaciones CRUD completas.
 
-Este es un proyecto que utiliza **Spring Boot** en el backend ⚙️ y **React** en el frontend 🌐. El objetivo del proyecto es crear una aplicación web con funcionalidades CRUD para **Productos** 🛒 y **Categorías** 📂. A través de un servicio web RESTful, se gestionan las operaciones en el backend y el frontend se encarga de la interacción con el usuario 👨‍💻.
+## 📋 Tabla de Contenidos
 
-## Tecnologías Utilizadas 🛠️
+- [Características](#-características)
+- [Tecnologías](#️-tecnologías)
+- [Estructura del Proyecto](#️-estructura-del-proyecto)
+- [Requisitos Previos](#-requisitos-previos)
+- [Instalación](#-instalación)
+- [Configuración](#️-configuración)
+- [Uso](#-uso)
+- [API Endpoints](#-api-endpoints)
+- [Contribuir](#-contribuir)
+- [Licencia](#-licencia)
 
-- **Spring Boot** para el backend ⚙️
-- **React** para el frontend 🌐
-- **JPA / Hibernate** para interactuar con la base de datos 💾
-- **Axios** para las solicitudes HTTP 🌐
-- **MySQL** (o cualquier base de datos relacional) para la persistencia de datos 🗃️
+## ✨ Características
 
-## Estructura del Proyecto 🏗️
+- ✅ **CRUD completo** para Productos y Categorías
+- 🔄 **API RESTful** con Spring Boot
+- 🎨 **Interfaz intuitiva** con React
+- 💾 **Persistencia de datos** con JPA/Hibernate
+- 🌐 **Comunicación HTTP** con Axios
+- 📱 **Diseño responsivo**
+- ⚡ **Desarrollo en tiempo real** con hot reload
 
-### Frontend 🎨
+## 🛠️ Tecnologías
 
-La carpeta `front` contiene el código de React:
+### Backend
+- **Spring Boot** 3.x
+- **Spring Data JPA** / **Hibernate**
+- **MySQL** (base de datos)
+- **Maven** (gestión de dependencias)
 
-front/
-│ App.jsx # Componente principal de la aplicación 📲
-│ main.jsx # Archivo de entrada principal para React 💻
-│
-├───assets
-│ react.svg # Imagen de React para la interfaz 🌟
-│
-├───components
-│ ListaCategorias.jsx # Componente para listar las categorías 🗂️
-│ ListaProductos.jsx # Componente para listar los productos 🛍️
-│ RegistrarCategoria.jsx # Componente para registrar una nueva categoría 📝
-│ RegistrarProducto.jsx # Componente para registrar un nuevo producto 🏷️
-│
-├───pages
-│ Home.jsx # Componente para la página principal con botones de navegación 🏠
-│
-└───services
-categoriaService.js # Servicio para interactuar con el backend para categorías 🔄
-productoService.js # Servicio para interactuar con el backend para productos 🔄
+### Frontend
+- **React** 18.x
+- **Axios** (cliente HTTP)
+- **Vite** (herramienta de desarrollo)
+- **ES6+** / **JSX**
 
-### Backend ⚙️
+## 🏗️ Estructura del Proyecto
 
-La carpeta `back` contiene el código de Spring Boot:
+```
+springboot-react/
+├── back/                              # Backend Spring Boot
+│   └── src/main/
+│       ├── java/com/tecsup/tarea_spring/
+│       │   ├── TareaSpringApplication.java    # Clase principal
+│       │   ├── controlador/
+│       │   │   ├── CategoriaControlador.java  # Controller de categorías
+│       │   │   └── ProductoControlador.java   # Controller de productos
+│       │   ├── excepciones/
+│       │   │   └── ResourceNotFoundException.java
+│       │   ├── modelo/
+│       │   │   ├── Categoria.java             # Entidad Categoría
+│       │   │   └── Producto.java              # Entidad Producto
+│       │   └── repositorio/
+│       │       ├── CategoriaRepositorio.java  # Repository de categorías
+│       │       └── ProductoRepositorio.java   # Repository de productos
+│       └── resources/
+│           └── application.properties         # Configuración
+├── front/                             # Frontend React
+│   ├── src/
+│   │   ├── App.jsx                    # Componente principal
+│   │   ├── main.jsx                   # Punto de entrada
+│   │   ├── components/
+│   │   │   ├── ListaCategorias.jsx    # Lista de categorías
+│   │   │   ├── ListaProductos.jsx     # Lista de productos
+│   │   │   ├── RegistrarCategoria.jsx # Formulario de categoría
+│   │   │   └── RegistrarProducto.jsx  # Formulario de producto
+│   │   ├── pages/
+│   │   │   └── Home.jsx               # Página principal
+│   │   └── services/
+│   │       ├── categoriaService.js    # Servicio API categorías
+│   │       └── productoService.js     # Servicio API productos
+│   └── package.json
+└── README.md
+```
 
-back/
-└───src
-├───main
-│ ├───java
-│ │ └───com
-│ │ └───tecsup
-│ │ └───tarea_spring
-│ │ │ TareaSpringApplication.java # Clase principal de Spring Boot 🔧
-│ │ │
-│ │ ├───controlador
-│ │ │ CategoriaControlador.java # Controlador para las categorías 🛠️
-│ │ │ ProductoControlador.java # Controlador para los productos 🛒
-│ │ │
-│ │ ├───excepciones
-│ │ │ ResourceNotFoundException.java # Excepción personalizada para recursos no encontrados ⚠️
-│ │ │
-│ │ ├───modelo
-│ │ │ Categoria.java # Modelo para las categorías 📂
-│ │ │ Producto.java # Modelo para los productos 🛍️
-│ │ │
-│ │ └───repositorio
-│ │ CategoriaRepositorio.java # Repositorio de categorías 🗃️
-│ │ ProductoRepositorio.java # Repositorio de productos 🗃️
-│ │
-│ └───resources
-│ │ application.properties # Archivo de configuración de la base de datos 🔑
+## 📋 Requisitos Previos
 
-## Instalación 🔧
+Asegúrate de tener instalado:
 
-### Backend (Spring Boot) ⚙️
+- **Java** 17 o superior
+- **Node.js** 16 o superior
+- **npm** o **yarn**
+- **MySQL** 8.0 o superior
+- **Maven** 3.6 o superior
 
-1. Clona este repositorio:
+## 🚀 Instalación
 
-    ```bash
-    git clone https://github.com/Vania-0731/springboot-react.git
-    ```
+### 1. Clonar el repositorio
 
-2. Navega al directorio `back` (o donde tengas el código del servidor) y abre un terminal en ese directorio.
+```bash
+git clone https://github.com/Vania-0731/springboot-react.git
+cd springboot-react
+```
 
-3. **Instala las dependencias**:
+### 2. Configurar el Backend
 
-    Si estás usando **Maven**:
+```bash
+# Navegar al directorio del backend
+cd back
 
-    ```bash
-    mvn install
-    ```
+# Instalar dependencias
+mvn clean install
 
-    Si usas **Gradle**, ejecuta:
+# O si prefieres Gradle
+./gradlew build
+```
 
-    ```bash
-    ./gradlew build
-    ```
+### 3. Configurar el Frontend
 
-4. **Configura la base de datos**:
+```bash
+# Navegar al directorio del frontend
+cd front
 
-    Asegúrate de tener una base de datos configurada y ajusta las configuraciones en el archivo `application.properties` según sea necesario. 
+# Instalar dependencias
+npm install
 
-    Ejemplo de configuración para MySQL:
+# O con yarn
+yarn install
+```
 
-    ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/mi_base_de_datos
-    spring.datasource.username=usuario
-    spring.datasource.password=contraseña
-    ```
+## ⚙️ Configuración
 
-5. **Inicia el backend**:
+### Base de Datos
 
-    Si estás utilizando Maven:
+1. Crea una base de datos MySQL:
 
-    ```bash
-    mvn spring-boot:run
-    ```
+```sql
+CREATE DATABASE productos_db;
+```
 
-    O con Gradle:
+2. Configura `back/src/main/resources/application.properties`:
 
-    ```bash
-    ./gradlew bootRun
-    ```
+```properties
+# Configuración de la base de datos
+spring.datasource.url=jdbc:mysql://localhost:3306/productos_db
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_contraseña
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-### Frontend (React) 🌐
+# Configuración JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 
-1. Navega al directorio `front` (o donde tengas el código del cliente) y abre un terminal en ese directorio.
+# Puerto del servidor
+server.port=8080
 
-2. **Instala las dependencias de Node**:
+# CORS (si es necesario)
+spring.web.cors.allowed-origins=http://localhost:3000
+```
 
-    ```bash
-    npm install
-    ```
+### Variables de Entorno (Opcional)
 
-    o si usas **Yarn**:
+Puedes usar variables de entorno para mayor seguridad:
 
-    ```bash
-    yarn install
-    ```
+```properties
+spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/productos_db}
+spring.datasource.username=${DB_USERNAME:root}
+spring.datasource.password=${DB_PASSWORD:password}
+```
 
-3. **Inicia el frontend**:
+## 🎯 Uso
 
-    ```bash
-    npm start
-    ```
+### Iniciar el Backend
 
-    o si usas **Yarn**:
+```bash
+cd back
 
-    ```bash
-    yarn start
-    ```
+# Con Maven
+mvn spring-boot:run
 
-Esto debería iniciar tu servidor de desarrollo React en `http://localhost:3000` (por defecto).
+# Con Gradle
+./gradlew bootRun
 
-## Funcionalidades ⚙️
+# El servidor estará disponible en http://localhost:8080
+```
 
-### Backend 🔧
+### Iniciar el Frontend
 
-- **Productos**: CRUD (Crear, Leer, Actualizar, Eliminar) para productos 🛒.
-- **Categorías**: CRUD (Crear, Leer, Actualizar, Eliminar) para categorías 📂.
+```bash
+cd front
 
-### Frontend 🖥️
+# Con npm
+npm run dev
 
-- **Listar Productos**: Muestra todos los productos registrados 🛍️.
-- **Registrar Producto**: Permite agregar un nuevo producto 📝.
-- **Actualizar Producto**: Permite editar un producto existente ✏️.
-- **Eliminar Producto**: Elimina un producto ❌.
-- **Listar Categorías**: Muestra todas las categorías 📂.
-- **Registrar Categoría**: Permite agregar una nueva categoría 📝.
-- **Actualizar Categoría**: Permite editar una categoría existente ✏️.
-- **Eliminar Categoría**: Elimina una categoría ❌.
+# Con yarn
+yarn dev
 
-## Endpoints del Backend 🔌
+# La aplicación estará disponible en http://localhost:3000
+```
 
-- **GET** `/api/v1/productos` - Obtener todos los productos 🛒.
-- **POST** `/api/v1/productos` - Crear un nuevo producto 📝.
-- **GET** `/api/v1/productos/{id}` - Obtener un producto por ID 🔍.
-- **PUT** `/api/v1/productos/{id}` - Actualizar un producto existente ✏️.
-- **DELETE** `/api/v1/productos/{id}` - Eliminar un producto ❌.
+### Acceder a la Aplicación
 
-- **GET** `/api/v1/categorias` - Obtener todas las categorías 📂.
-- **POST** `/api/v1/categorias` - Crear una nueva categoría 📝.
-- **GET** `/api/v1/categorias/{id}` - Obtener una categoría por ID 🔍.
-- **PUT** `/api/v1/categorias/{id}` - Actualizar una categoría existente ✏️.
-- **DELETE** `/api/v1/categorias/{id}` - Eliminar una categoría ❌.
+1. Abre tu navegador en `http://localhost:3000`
+2. Utiliza la interfaz para gestionar productos y categorías
+3. Las operaciones CRUD están disponibles para ambas entidades
 
-## Contribuciones 🤝
+## 🔌 API Endpoints
 
-Si deseas contribuir a este proyecto, por favor sigue estos pasos:
+### Productos
 
-1. Haz un **fork** de este repositorio 🍴.
-2. Crea una nueva **branch** para tu funcionalidad (`git checkout -b nueva-funcionalidad`) 🌱.
-3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`) 📝.
-4. Haz un **push** a la branch (`git push origin nueva-funcionalidad`) 🚀.
-5. Abre un **pull request** 📬.
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/api/v1/productos` | Obtener todos los productos |
+| `POST` | `/api/v1/productos` | Crear un nuevo producto |
+| `GET` | `/api/v1/productos/{id}` | Obtener producto por ID |
+| `PUT` | `/api/v1/productos/{id}` | Actualizar producto |
+| `DELETE` | `/api/v1/productos/{id}` | Eliminar producto |
+
+### Categorías
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/api/v1/categorias` | Obtener todas las categorías |
+| `POST` | `/api/v1/categorias` | Crear una nueva categoría |
+| `GET` | `/api/v1/categorias/{id}` | Obtener categoría por ID |
+| `PUT` | `/api/v1/categorias/{id}` | Actualizar categoría |
+| `DELETE` | `/api/v1/categorias/{id}` | Eliminar categoría |
+
+### Ejemplo de Request/Response
+
+**POST** `/api/v1/productos`
+
+```json
+{
+  "nombre": "Laptop Gaming",
+  "descripcion": "Laptop para gaming de alta gama",
+  "precio": 1299.99,
+  "categoriaId": 1
+}
+```
+
+**Response:**
+```json
+{
+  "id": 1,
+  "nombre": "Laptop Gaming",
+  "descripcion": "Laptop para gaming de alta gama",
+  "precio": 1299.99,
+  "categoria": {
+    "id": 1,
+    "nombre": "Electrónicos"
+  }
+}
+```
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Sigue estos pasos:
+
+1. **Fork** el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un **Pull Request**
+
+### Guías de Contribución
+
+- Asegúrate de que el código siga las convenciones del proyecto
+- Añade tests para nuevas funcionalidades
+- Actualiza la documentación si es necesario
+- Describe claramente los cambios en el PR
+
+## 📝 Scripts Disponibles
+
+### Backend
+```bash
+mvn spring-boot:run    # Ejecutar la aplicación
+mvn test               # Ejecutar tests
+mvn clean package      # Crear JAR ejecutable
+```
+
+### Frontend
+```bash
+npm run dev            # Servidor de desarrollo
+npm run build          # Build para producción
+npm run preview        # Previsualizar build
+npm run lint           # Linter
+```
+
+## 🐛 Solución de Problemas
+
+### Problemas Comunes
+
+1. **Error de conexión a la base de datos**
+   - Verifica que MySQL esté ejecutándose
+   - Comprueba las credenciales en `application.properties`
+
+2. **Puerto ya en uso**
+   - Cambia el puerto en `application.properties` o mata el proceso
+
+3. **CORS errors**
+   - Asegúrate de que la configuración CORS esté correcta
+
+4. **Dependencies not found**
+   - Ejecuta `mvn clean install` o `npm install` según corresponda
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
 
-¡Espero que este proyecto te sea útil! Si tienes alguna pregunta o sugerencia, no dudes en contactarme 📧.
+## 📞 Contacto
 
+**Desarrollador:** Vania
+**Repositorio:** [https://github.com/Vania-0731/springboot-react](https://github.com/Vania-0731/springboot-react)
+
+---
+
+⭐ **¡No olvides dar una estrella al proyecto si te ha sido útil!**
